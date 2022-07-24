@@ -27,3 +27,44 @@ const posts = [
         likes: 152
     }
 ]
+
+const postContent = document.querySelector(".post-content");
+
+function rest() {
+    postContent.innerHTML = "";
+}
+
+function renderPosts() {
+    for (let i = 0; i < posts.length; i++) {
+        postContent.innerHTML += `
+            <section class="user-info">
+                <div class="user-pic">
+                    <img src="${posts[i].avatar}" class="user-avatar" alt="avatar">
+                </div>
+                <div class="user-descr">
+                    <span class="user-full-name">${posts[i].name}</span>
+                    <span class="user-location">${posts[i].location}</span>
+                </div>
+            </section>
+            <section class="main-image">
+                <img src="${posts[i].post}" class="post-image" alt="painter's self-portrait">
+            </section>
+            <section class="post-body">
+                <div class="icons">
+                    <img ondblclick="addLikes(${i})" src="images/${posts[i].didLike ? 'red-heart.png' : 'icon-heart.png'}" class="icon icon-heart" alt="heart icon">
+                    <img src="images/icon-comment.png" class="icon icon-comment" alt="comment icon">
+                    <img src="images/icon-dm.png" class="icon icon-share" alt="share icon">
+                </div>
+                <p class="likes-count">${posts[i].likes}</p>
+                <p class="username-caption">
+                    <span class="username">${posts[i].username}</span>
+                    <span class="comment">${posts[i].comment}</span>
+                </p>
+            </section>
+        `;
+     }
+}
+
+renderPosts();
+
+
